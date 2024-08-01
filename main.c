@@ -24,6 +24,7 @@ print_help_message:
         puts("  [/] - division ..................... returns the quotient.\n");
         puts("  [!] - factoiral .................... returns the product, only accepts single parameter.\n");
         puts("  [^] - exponent ..................... returns the product, accepts a max of 2 param. If provided a single param that base will be put to a power of two.\n");
+        puts("  [@] - square root .................. returns the square root of a given radicand, only accepts a single parameter.\n");
         puts("  [help] ............................. to print this help message\n");
         puts("\n");
         puts("Example:\n");
@@ -206,6 +207,18 @@ print_help_message:
                 printf("%f\n", result);
 
                 return 0;
+            };
+
+            break;
+        case '@':
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
+
+            if(argv[INDEX_INTO_ARGV_PARAM_ONE]) {
+                double result = sqrt(atof(argv[INDEX_INTO_ARGV_PARAM_ONE]));
+                printf("%f\n", result);
+                return 0;
+            } else {
+                goto print_help_message;
             };
 
             break;
