@@ -71,7 +71,7 @@ print_help_message:
             fprintf(stderr, "Invalid command was provided: %s\n", argv[INDEX_INTO_ARGV_COMMAND]);
             return -1;
             break;
-    }
+    };
 
     return 0;
 }
