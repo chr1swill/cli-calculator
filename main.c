@@ -67,6 +67,27 @@ print_help_message:
             };
 
             break;
+        case 'x': 
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
+
+            if (argc == ARGC_WITH_ONE_PARAM) {
+                double param_one = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
+                printf("%f\n", param_one);
+                return 0;
+            } else {
+                double total = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
+
+                int i = INDEX_INTO_ARGV_PARAM_TWO;
+                while (i < argc) {
+                    total *= atof(argv[i]);
+                    i++;
+                };
+
+                printf("%f\n", total);
+                return 0;
+            };
+
+            break;
         default: 
             fprintf(stderr, "Invalid command was provided: %s\n", argv[INDEX_INTO_ARGV_COMMAND]);
             return -1;
