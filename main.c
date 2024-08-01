@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define INDEX_INTO_ARGV_COMMAND 1
+#define INDEX_INTO_ARGV_PARAM_ONE 2
+#define INDEX_INTO_ARGV_PARAM_TWO 3
+
+#define ARGC_WITH_NO_PARAMS 2
+#define ARGC_WITH_ONE_PARAM 3
+
 int main(int argc, char **argv) {
     if (argc < 3) {
 print_help_message: 
@@ -14,12 +21,12 @@ print_help_message:
     };
 
     // checking provided command
-    switch (argv[1][0]) {
+    switch (argv[INDEX_INTO_ARGV_COMMAND][0]) {
         case '+':
-            if (argc == 2) goto print_help_message;
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
 
-            if (argc == 3) {
-                double param_one = atof(argv[2]);
+            if (argc == ARGC_WITH_ONE_PARAM) {
+                double param_one = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
                 printf("%f\n", param_one);
 
                 return 0;
@@ -27,7 +34,7 @@ print_help_message:
                 double total = 0;
 
                 // start of the indices offset by the program name + command 
-                int i = 2;
+                int i = INDEX_INTO_ARGV_PARAM_ONE;
                 while (i < argc) {
                     total += atof(argv[i]);
                     i++;
@@ -39,17 +46,17 @@ print_help_message:
 
             break;
         case '-': 
-            if (argc == 2) goto print_help_message;
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
 
-            if (argc == 3) {
-                double param_one = atof(argv[2]);
+            if (argc == ARGC_WITH_ONE_PARAM) {
+                double param_one = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
                 printf("%f\n", param_one);
 
                 return 0;
             } else {
-                double total = atof(argv[2]);
+                double total = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
 
-                int i = 3;
+                int i = INDEX_INTO_ARGV_PARAM_TWO;
                 while (i < argc) {
                     total -= atof(argv[i]);
                     i++;
@@ -61,6 +68,8 @@ print_help_message:
 
             break;
         default: 
+            fprintf(stderr, "Invalid command was provided: %s\n", argv[INDEX_INTO_ARGV_COMMAND]);
+            return -1;
             break;
     }
 
