@@ -11,6 +11,7 @@
 
 #define ARGC_WITH_NO_PARAMS 2
 #define ARGC_WITH_ONE_PARAM 3
+#define ARGC_WITH_TWO_PARAM 4
 
 int main(int argc, char **argv) {
     if (argc < 3) {
@@ -21,7 +22,8 @@ print_help_message:
         puts("  [-] - subtraction .................. returns the difference.\n");
         puts("  [x] - multiplication ............... returns the product.\n");
         puts("  [/] - division ..................... returns the quotient.\n");
-        puts("  [!] - division ..................... returns the product, only accepts single parameter.\n");
+        puts("  [!] - factoiral .................... returns the product, only accepts single parameter.\n");
+        puts("  [^] - exponent ..................... returns the product, accepts a max of 2 param. If provided a single param that base will be put to a power of two.\n");
         puts("  [help] ............................. to print this help message\n");
         puts("\n");
         puts("Example:\n");
@@ -171,6 +173,40 @@ print_help_message:
 
             printf("%f\n", total);
             return 0;
+
+            break;
+        case '^':
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
+
+            if (argc > ARGC_WITH_TWO_PARAM) puts("This command only accepts a minimum of one param and a max of two params");
+
+            if (argc == ARGC_WITH_ONE_PARAM) {
+                // default to power of two
+                double param_one_to_float = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
+                double total =  param_one_to_float * param_one_to_float;
+                printf("%f\n", total);
+                return 0;
+            } else {
+                double total = 1;
+                double base = atof(argv[INDEX_INTO_ARGV_PARAM_ONE]);
+                double exponent = atof(argv[INDEX_INTO_ARGV_PARAM_TWO]);
+
+                while (exponent > 0) {
+                    total *= base;
+                    exponent--;
+                };
+
+                double result;
+                if (total == 0) {
+                    result = base;
+                } else {
+                    result = total;
+                };
+
+                printf("%f\n", result);
+
+                return 0;
+            };
 
             break;
         default: 
