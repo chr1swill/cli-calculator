@@ -140,6 +140,38 @@ print_help_message:
             };
 
             break;
+        case '!':
+            if (argc == ARGC_WITH_NO_PARAMS) goto print_help_message;
+
+            // right now factorial will only work with one numeber
+            if (argc > ARGC_WITH_ONE_PARAM) puts("Command ! is only able to process a single parameter");
+
+            // check of param is negative number
+            if (atof(argv[INDEX_INTO_ARGV_PARAM_ONE]) < 0) {
+                puts("undefined");
+                return 0;
+            };
+
+            // check if param is 0
+            if (atof(argv[INDEX_INTO_ARGV_PARAM_ONE]) == 0) {
+                puts("0");
+                return 0;
+            };
+
+            double total = round(atof(argv[INDEX_INTO_ARGV_PARAM_ONE]));
+            printf("init total: %f\n", total);
+
+            double param = round(atof(argv[INDEX_INTO_ARGV_PARAM_ONE])) - 1;
+            printf("init param: %f\n", param);
+            while (param > 0) {
+                total *= param;
+                param--;
+            };
+
+            printf("%f\n", total);
+            return 0;
+
+            break;
         default: 
             fprintf(stderr, "Invalid command was provided: %s\n", argv[INDEX_INTO_ARGV_COMMAND]);
             return -1;
