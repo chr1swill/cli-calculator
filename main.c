@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
 
 #define PROGRAM_NAME argv[0]
 
@@ -13,19 +15,40 @@
 int main(int argc, char **argv) {
     if (argc < 3) {
 print_help_message: 
-        puts("No input was provided to process\n");
         puts("Syntax: <command> [...parameters]\n");
         puts("Accepted commands: \n");
         puts("  [+] - addition ..................... returns the sum.\n");
         puts("  [-] - subtraction .................. returns the difference.\n");
         puts("  [x] - multiplication ............... returns the product.\n");
         puts("  [/] - division ..................... returns the quotient.\n");
+        puts("  [help] ............................. to print this help message\n");
         puts("\n");
         puts("Example:\n");
         printf("Input: %s + 10 10\n", PROGRAM_NAME);
         puts("Output: 20\n");
 
         return 0;
+    };
+
+    if (argv[INDEX_INTO_ARGV_COMMAND]) {
+        int help_needed = strncmp(argv[INDEX_INTO_ARGV_COMMAND], "help", sizeof("help"));
+        if (help_needed == 0) {
+            goto print_help_message;
+        };
+    };
+
+    if (argv[INDEX_INTO_ARGV_PARAM_ONE]) {
+        int help_needed = strncmp(argv[INDEX_INTO_ARGV_PARAM_ONE], "help", sizeof("help"));
+        if (help_needed == 0) {
+            goto print_help_message;
+        };
+    };
+
+    if (argv[INDEX_INTO_ARGV_PARAM_TWO]) {
+        int help_needed = strncmp(argv[INDEX_INTO_ARGV_PARAM_TWO], "help", sizeof("help"));
+        if (help_needed == 0) {
+            goto print_help_message;
+        };
     };
 
     // checking provided command
