@@ -21,6 +21,7 @@ print_help_message:
         puts("  [-] - subtraction .................. returns the difference.\n");
         puts("  [x] - multiplication ............... returns the product.\n");
         puts("  [/] - division ..................... returns the quotient.\n");
+        puts("  [!] - division ..................... returns the product, only accepts single parameter.\n");
         puts("  [help] ............................. to print this help message\n");
         puts("\n");
         puts("Example:\n");
