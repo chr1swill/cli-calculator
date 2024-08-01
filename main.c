@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define PROGRAM_NAME argv[0]
+
 #define INDEX_INTO_ARGV_COMMAND 1
 #define INDEX_INTO_ARGV_PARAM_ONE 2
 #define INDEX_INTO_ARGV_PARAM_TWO 3
@@ -14,8 +16,13 @@ print_help_message:
         puts("No input was provided to process\n");
         puts("Syntax: <command> [...parameters]\n");
         puts("Accepted commands: \n");
-        puts("  + ..................... returns the sum of the provided parameters.\n");
-        puts("  - ..................... returns the difference of the provided parameters.\n");
+        puts("  +   [addition] ..................... returns the sum of the provided parameters.\n");
+        puts("  -   [subtraction] .................. returns the difference of the provided parameters.\n");
+        puts("  x   [multiplication] ............... returns the product of the provided parameters.\n");
+        puts("\n");
+        puts("Example:\n");
+        printf("Input: %s + 10 10\n", PROGRAM_NAME);
+        puts("Output: 20\n");
 
         return 0;
     };
