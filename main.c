@@ -39,6 +39,26 @@ print_help_message:
 
             break;
         case '-': 
+            if (argc == 2) goto print_help_message;
+
+            if (argc == 3) {
+                double param_one = atof(argv[2]);
+                printf("%f\n", param_one);
+
+                return 0;
+            } else {
+                double total = atof(argv[2]);
+
+                int i = 3;
+                while (i < argc) {
+                    total -= atof(argv[i]);
+                    i++;
+                };
+
+                printf("%f\n", total);
+                return 0;
+            };
+
             break;
         default: 
             break;
